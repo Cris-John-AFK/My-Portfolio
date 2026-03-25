@@ -1,9 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 import { Mail, Send, CheckCircle, AlertCircle, MessageCircle, Loader2 } from 'lucide-vue-next'
-// Real Firebase logic enabled:
-import { db } from '../firebase'
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 const form = ref({
   name: '',
@@ -16,31 +13,45 @@ const errorMessage = ref('')
 
 const isSubmitting = ref(false)
 
+// You will put your Web3Forms Access Key here or in .env (VITE_WEB3FORMS_ACCESS_KEY)
+const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || 'YOUR_ACCESS_KEY_HERE'
+
 const submitForm = async () => {
   status.value = 'submitting'
   isSubmitting.value = true
   
   try {
-    // Actually sending the message to Firebase Firestore
-    await addDoc(collection(db, 'messages'), {
-      name: form.value.name,
-      email: form.value.email,
-      message: form.value.message,
-      createdAt: serverTimestamp()
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        access_key: accessKey,
+        name: form.value.name,
+        email: form.value.email,
+        message: form.value.message,
+        from_name: 'Portfolio Website',
+        subject: `New Portfolio Message from ${form.value.name}`
+      })
     })
+
+    const result = await response.json()
     
-    status.value = 'success'
-    
-    // Reset form after delay
-    setTimeout(() => {
-      form.value = { name: '', email: '', message: '' }
-      status.value = 'idle'
-      isSubmitting.value = false
-    }, 3000)
-    
+    if (result.success) {
+      status.value = 'success'
+      setTimeout(() => {
+        form.value = { name: '', email: '', message: '' }
+        status.value = 'idle'
+        isSubmitting.value = false
+      }, 3000)
+    } else {
+      throw new Error(result.message || 'Something went wrong')
+    }
   } catch (err) {
     status.value = 'error'
-    errorMessage.value = err.message || 'Something went wrong. Please try again.'
+    errorMessage.value = err.message || 'Failed to send message. Please try again.'
     isSubmitting.value = false
   }
 }
