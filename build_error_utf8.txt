@@ -1,0 +1,185 @@
+﻿npx : [33mYou are using 
+Node.js 20.17.0. Vite 
+requires Node.js version 
+20.19+ or 22.12+. Please 
+upgrade your Node.js 
+version.[39m
+At line:1 char:1
++ npx vite build 2>&1 | 
+Out-File -Encoding utf8 
+build_error_utf8.txt
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : 
+    NotSpecified: ([33mYou   
+  are us...s version.[39m:   
+ String) [], RemoteExcepti    
+on
+    + FullyQualifiedErrorId : 
+    NativeCommandError
+ 
+file:///C:/Users/crisj/.gemini
+/antigravity/scratch/portfolio
+-website/node_modules/rolldown
+/dist/shared/binding-ER32uZ22.
+mjs:507
+		if (loadErrors.length > 0) 
+throw new Error("Cannot find 
+native binding. npm has a bug 
+related to optional 
+dependencies (https://github.c
+om/npm/cli/issues/4828). 
+Please try `npm i` again 
+after removing both 
+package-lock.json and 
+node_modules directory.", { 
+cause: 
+loadErrors.reduce((err, cur) 
+=> {
+		                            
+     ^
+
+Error: Cannot find native 
+binding. npm has a bug 
+related to optional 
+dependencies (https://github.c
+om/npm/cli/issues/4828). 
+Please try `npm i` again 
+after removing both 
+package-lock.json and 
+node_modules directory.
+    at file:///C:/Users/crisj/
+.gemini/antigravity/scratch/po
+rtfolio-website/node_modules/r
+olldown/dist/shared/binding-ER
+32uZ22.mjs:507:36
+    at file:///C:/Users/crisj/
+.gemini/antigravity/scratch/po
+rtfolio-website/node_modules/r
+olldown/dist/shared/binding-ER
+32uZ22.mjs:9:48
+    ... 2 lines matching 
+cause stack trace ...
+    at async 
+ModuleLoader.import (node:inte
+rnal/modules/esm/loader:473:24
+)
+    at async CAC.<anonymous> (
+file:///C:/Users/crisj/.gemini
+/antigravity/scratch/portfolio
+-website/node_modules/vite/dis
+t/node/cli.js:764:28) {
+  [cause]: Error: Cannot find 
+module '@rolldown/binding-win3
+2-x64-msvc'
+  Require stack:
+  - C:\Users\crisj\.gemini\ant
+igravity\scratch\portfolio-web
+site\node_modules\rolldown\dis
+t\shared\binding-ER32uZ22.mjs
+      at 
+Module._resolveFilename (node:
+internal/modules/cjs/loader:12
+25:15)
+      ... 2 lines matching 
+cause stack trace ...
+      at require (node:interna
+l/modules/helpers:179:18)
+      at requireNative (file:/
+//C:/Users/crisj/.gemini/antig
+ravity/scratch/portfolio-websi
+te/node_modules/rolldown/dist/
+shared/binding-ER32uZ22.mjs:14
+7:21)
+      at file:///C:/Users/cris
+j/.gemini/antigravity/scratch/
+portfolio-website/node_modules
+/rolldown/dist/shared/binding-
+ER32uZ22.mjs:475:18
+      at file:///C:/Users/cris
+j/.gemini/antigravity/scratch/
+portfolio-website/node_modules
+/rolldown/dist/shared/binding-
+ER32uZ22.mjs:9:48
+      at file:///C:/Users/cris
+j/.gemini/antigravity/scratch/
+portfolio-website/node_modules
+/rolldown/dist/shared/parse-mI
+a2AT2F.mjs:39:46
+      at ModuleJob.run (node:i
+nternal/modules/esm/module_job
+:234:25)
+      at async 
+ModuleLoader.import (node:inte
+rnal/modules/esm/loader:473:24
+) {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [
+      'C:\\Users\\crisj\\.gemi
+ni\\antigravity\\scratch\\port
+folio-website\\node_modules\\r
+olldown\\dist\\shared\\binding
+-ER32uZ22.mjs'
+    ],
+    cause: Error: Cannot find 
+module './rolldown-binding.win
+32-x64-msvc.node'
+    Require stack:
+    - C:\Users\crisj\.gemini\a
+ntigravity\scratch\portfolio-w
+ebsite\node_modules\rolldown\d
+ist\shared\binding-ER32uZ22.mj
+s
+        at 
+Module._resolveFilename (node:
+internal/modules/cjs/loader:12
+25:15)
+        at Module._load (node:
+internal/modules/cjs/loader:10
+51:27)
+        at Module.require (nod
+e:internal/modules/cjs/loader:
+1311:19)
+        at require (node:inter
+nal/modules/helpers:179:18)
+        at requireNative (file
+:///C:/Users/crisj/.gemini/ant
+igravity/scratch/portfolio-web
+site/node_modules/rolldown/dis
+t/shared/binding-ER32uZ22.mjs:
+142:12)
+        at file:///C:/Users/cr
+isj/.gemini/antigravity/scratc
+h/portfolio-website/node_modul
+es/rolldown/dist/shared/bindin
+g-ER32uZ22.mjs:475:18
+        at file:///C:/Users/cr
+isj/.gemini/antigravity/scratc
+h/portfolio-website/node_modul
+es/rolldown/dist/shared/bindin
+g-ER32uZ22.mjs:9:48
+        at file:///C:/Users/cr
+isj/.gemini/antigravity/scratc
+h/portfolio-website/node_modul
+es/rolldown/dist/shared/parse-
+mIa2AT2F.mjs:39:46
+        at ModuleJob.run (node
+:internal/modules/esm/module_j
+ob:234:25)
+        at async 
+ModuleLoader.import (node:inte
+rnal/modules/esm/loader:473:24
+) {
+      code: 
+'MODULE_NOT_FOUND',
+      requireStack: [
+        'C:\\Users\\crisj\\.ge
+mini\\antigravity\\scratch\\po
+rtfolio-website\\node_modules\
+\rolldown\\dist\\shared\\bindi
+ng-ER32uZ22.mjs'
+      ]
+    }
+  }
+}
+
+Node.js v20.17.0

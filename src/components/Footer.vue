@@ -1,0 +1,40 @@
+<script setup>
+import { Github, Linkedin, Mail, Twitter } from 'lucide-vue-next'
+</script>
+
+<template>
+  <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+    <div class="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        <!-- Brand -->
+        <div class="text-center md:text-left">
+          <a href="#home" class="text-2xl font-bold tracking-tight text-blue-400 mb-2 block">
+            DevPort.
+          </a>
+          <p class="text-gray-400 text-sm">
+            Building robust web applications with a focus on UI/UX and performance.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div class="flex justify-center space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Github">
+            <Github class="w-6 h-6" />
+          </a>
+          <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors" aria-label="LinkedIn">
+            <Linkedin class="w-6 h-6" />
+          </a>
+          <a href="#" class="text-gray-400 hover:text-red-400 transition-colors" aria-label="Email">
+            <Mail class="w-6 h-6" />
+          </a>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center md:text-right text-gray-500 text-sm">
+          <p>&copy; {{ new Date().getFullYear() }} Crisjohn. All rights reserved.</p>
+          <p class="mt-1">Designed & Built with Vue 3 and TailwindCSS.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</template>
