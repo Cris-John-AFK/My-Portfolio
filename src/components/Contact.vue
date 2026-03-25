@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-import { Mail, Send, CheckCircle, AlertCircle, MessageCircle } from 'lucide-vue-next'
-// Note: Uncomment these if using Firebase Realtime Database or Firestore
-// import { db } from '../firebase'
-// import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { Mail, Send, CheckCircle, AlertCircle, MessageCircle, Loader2 } from 'lucide-vue-next'
+// Real Firebase logic enabled:
+import { db } from '../firebase'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 const form = ref({
   name: '',
@@ -21,18 +21,14 @@ const submitForm = async () => {
   isSubmitting.value = true
   
   try {
-    // If Firebase is configured properly, use this code:
-    /*
+    // Actually sending the message to Firebase Firestore
     await addDoc(collection(db, 'messages'), {
       name: form.value.name,
       email: form.value.email,
       message: form.value.message,
       createdAt: serverTimestamp()
     })
-    */
     
-    // Simulate network delay for now
-    await new Promise(resolve => setTimeout(resolve, 1500))
     status.value = 'success'
     
     // Reset form after delay
