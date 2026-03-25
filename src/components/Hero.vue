@@ -16,8 +16,7 @@ const heroProjects = ref([
     name: 'OJT Manager',
     tech: 'JS & SQLITE',
     description: 'A premium DTR manager system.',
-    // If they haven't uploaded an image yet, it will fail gracefully or show broken icon. We use their OJT preview since they mapped it!
-    images: ['/ojt-preview.png'], 
+    images: ['/ojt-preview.png', '/ojt-preview2.png', '/ojt-preview3.png'], 
     activeImgIndex: 0,
     delay: '3.5s',
     position: 'bottom-[12%] -right-4 md:-right-24 w-48 md:w-64'
