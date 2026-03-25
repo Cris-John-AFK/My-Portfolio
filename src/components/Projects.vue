@@ -4,7 +4,7 @@ import { ExternalLink, Code2, Loader2 } from 'lucide-vue-next'
 
 const projects = ref([])
 const loading = ref(true)
-const githubUsername = 'crisjohn' // Replace with your actual username or fetch from env
+const githubUsername = 'Cris-John-AFK' // Updated to your true GitHub username
 
 const fetchProjects = async () => {
   try {
