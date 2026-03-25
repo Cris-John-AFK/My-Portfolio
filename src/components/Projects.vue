@@ -10,9 +10,9 @@ const githubUsername = 'Cris-John-AFK' // Updated to your true GitHub username
 // e.g., 'Portfolio': ['/portfolio-1.png', '/portfolio-2.png']
 const customImages = {
   'My-Portfolio': ['/portfolio-preview.png', '/portfolio-preview2.png'],
-  'OJT_Manager_APP': ['/ojt-preview.png'],
-  'HR_Leave_Monitoring': ['/hr-preview.png'],
-  'Event-Attendance-System': ['/event-preview.png']
+  'OJT_Manager_APP': ['/ojt-preview.png, /ojt-preview2.png, /ojt-preview3.png, /ojt-preview4.png'],
+  'HR_Leave_Monitoring': ['/hr-preview.png, /hr-preview.png2, /hr-preview.png3, /hr-preview.png4'],
+  'Event-Attendance-System': ['/event-preview.png', '/event-preview2.png','/event-preview3.png','/event-preview.png4','/event-preview.png5','/event-preview.png6']
 }
 
 const fetchProjects = async () => {
