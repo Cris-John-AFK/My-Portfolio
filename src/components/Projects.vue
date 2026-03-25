@@ -136,18 +136,18 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section id="projects" class="py-24 lg:py-36 bg-[#030712] relative overflow-hidden">
+  <section id="projects" class="py-24 lg:py-36 bg-gray-50 dark:bg-[#030712] relative overflow-hidden transition-colors duration-500">
     <!-- Dot Pattern Background -->
-    <div class="absolute inset-0 dot-pattern opacity-10"></div>
+    <div class="absolute inset-0 dot-pattern opacity-5 dark:opacity-10"></div>
     
     <div class="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10">
       <!-- Section Header -->
       <div class="mb-24 text-center" v-motion-fade-visible-once>
         <span class="text-blue-500 font-bold tracking-widest text-xs uppercase mb-4 block">Portfolio</span>
-        <h2 class="text-4xl md:text-7xl font-extrabold text-white mb-6 tracking-tight">
+        <h2 class="text-4xl md:text-7xl font-extrabold text-gray-900 dark:text-white mb-6 tracking-tight">
           Featured <span class="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent italic">Projects</span>
         </h2>
-        <p class="text-lg text-gray-400 max-w-xl mx-auto">
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
           A curated selection of projects that made me confident in building software.
         </p>
       </div>
@@ -173,20 +173,20 @@ onUnmounted(() => {
           </div>
 
           <!-- Project Title -->
-          <h3 class="text-3xl md:text-5xl font-black text-white mb-8 group-hover:translate-x-2 transition-transform duration-300">
+          <h3 class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white mb-8 group-hover:translate-x-2 transition-transform duration-300">
             {{ project.name }}
           </h3>
 
           <!-- Window Card -->
           <div 
-            class="relative rounded-[2.5rem] p-8 md:p-12 overflow-hidden transition-all duration-500 group-hover:-translate-y-2"
-            :style="{ backgroundColor: project.accentColor + '10' }" 
+            class="relative rounded-[2.5rem] p-8 md:p-12 overflow-hidden transition-all duration-500 group-hover:-translate-y-2 border border-gray-200 dark:border-white/5"
+            :style="{ backgroundColor: project.accentColor + '08' }" 
           >
             <!-- Background Accent Glow -->
-            <div class="absolute -top-24 -right-24 w-64 h-64 blur-[120px] opacity-20 transition-all duration-700 group-hover:scale-150"
+            <div class="absolute -top-24 -right-24 w-64 h-64 blur-[120px] opacity-10 dark:opacity-20 transition-all duration-700 group-hover:scale-150"
                  :style="{ backgroundColor: project.accentColor }"></div>
 
-            <p class="text-gray-300 text-lg md:text-xl font-medium mb-12 max-w-md leading-relaxed">
+            <p class="text-gray-600 dark:text-gray-300 text-lg md:text-xl font-medium mb-12 max-w-md leading-relaxed">
               {{ project.description }}
             </p>
 
