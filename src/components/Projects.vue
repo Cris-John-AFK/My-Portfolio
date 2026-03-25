@@ -25,14 +25,16 @@ const handleInquiry = () => {
   }
 }
 
-// Static featured projects: This allows you to set your real GitHub repos to PRIVATE
-// while still keeping them fully visible and professional on your portfolio!
+// Static featured projects: High-end curated versions
 const projects = ref([
   {
     id: 0,
+    number: '01',
+    category: 'RESEARCH PAPER',
+    accentColor: '#A855F7', // Purple
     name: 'LAMMS Research Project',
     originalName: 'LAMMS-Attendance-System',
-    description: 'My published research on a Learner\'s Attendance Monitoring and Management System. Features advanced QR integration, real-time analytics for teachers, and automated report generation. Published on ResearchGate.',
+    description: 'A study on Learner\'s Attendance Monitoring using QR technology. Features real-time tracking and automated SF2 report generation.',
     url: '', 
     researchUrl: 'https://www.researchgate.net/publication/401703874_LAMMS_A_Learner\'s_Attendance_Monitoring_and_Management_System_for_Naawan_Central_School_Misamis_Oriental_Philippines',
     homepage: '',
@@ -43,21 +45,27 @@ const projects = ref([
   },
   {
     id: 1,
-    name: 'My Portfolio',
+    number: '02',
+    category: 'WEB APPLICATION',
+    accentColor: '#3B82F6', // Blue
+    name: 'My Portfolio V2',
     originalName: 'My-Portfolio',
-    description: 'A premium, responsive portfolio website built with Vue 3, Tailwind CSS v4, and Lucide icons. Features dynamic image carousels and immersive detail modals.',
+    description: 'State-of-the-art portfolio featuring glassmorphism, dynamic project modals, and automated GitHub integrations.',
     url: 'https://github.com/Cris-John-AFK/My-Portfolio',
     homepage: 'https://crisjohn-portfolio.vercel.app',
-    language: 'Vue',
+    language: 'Vue 3',
     topics: ['Tailwind v4', 'Vite', 'Frontend'],
     images: ['/portfolio-preview.png', '/portfolio-preview2.png'],
     activeImgIndex: 0
   },
   {
     id: 2,
+    number: '03',
+    category: 'DESKTOP APP',
+    accentColor: '#F97316', // Orange
     name: 'OJT Manager App',
     originalName: 'OJT_Manager_APP',
-    description: 'A high-performance management system for tracking Daily Time Records (DTR). Built for organizations needing reliable, offline-capable attendance monitoring.',
+    description: 'High-performance DTR tracking system built for speed and reliability in institutional environments.',
     url: 'https://github.com/Cris-John-AFK/OJT_Manager_APP',
     homepage: '',
     language: 'JavaScript',
@@ -67,10 +75,13 @@ const projects = ref([
   },
   {
     id: 3,
+    number: '04',
+    category: 'ENTERPRISE SYSTEM',
+    accentColor: '#10B981', // Emerald
     name: 'HR Leave Monitoring',
     originalName: 'HR-Leave-Monitoring',
-    description: 'An enterprise-grade leave management system for tracking employee time off, approvals, and personnel history with PostgreSQL and Laravel.',
-    url: 'https://github.com/Cris-John-AFK/HR-Leave-Monitoring', // Hidden in UI, but kept here for schema
+    description: 'Enterprise resource planning for employee leave tracking and payroll-ready attendance logs.',
+    url: 'https://github.com/Cris-John-AFK/HR-Leave-Monitoring',
     homepage: '',
     language: 'Laravel & Vue',
     topics: ['PostgreSQL', 'HRIS', 'Admin'],
@@ -79,9 +90,12 @@ const projects = ref([
   },
   {
     id: 4,
+    number: '05',
+    category: 'AUTOMATION SYSTEM',
+    accentColor: '#F43F5E', // Rose
     name: 'QR Event Attendance',
     originalName: 'Event-Attendance-System',
-    description: 'A specialized QR-code based system for event attendees. Includes a lucky draw "Wheel of Names" and Slot Machine feature for giveaways.',
+    description: 'Real-time event check-in system with built-in gamification (Wheel of Names) for huge gatherings.',
     url: 'https://github.com/Cris-John-AFK/Event-Attendance-System',
     homepage: '',
     language: 'Vue & Firebase',
@@ -103,10 +117,9 @@ const prevImage = (project) => {
 let autoSlideInterval = null
 
 onMounted(() => {
-  loading.value = false // Skip API loading since we use static data now
+  loading.value = false 
   
   autoSlideInterval = setInterval(() => {
-    // Only auto-slide background projects, not the one in the modal
     projects.value.forEach(p => {
       if (!selectedProject.value || selectedProject.value.id !== p.id) {
         if (p.images && p.images.length > 1) {
@@ -123,14 +136,19 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section id="projects" class="py-20 lg:py-32 bg-gray-50 dark:bg-gray-900">
-    <div class="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-      <div class="mb-16 md:text-center" v-motion-fade-visible-once>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-4 border-b-2 border-blue-500 pb-2 inline-block">
-          Featured Projects
+  <section id="projects" class="py-24 lg:py-36 bg-[#030712] relative overflow-hidden">
+    <!-- Dot Pattern Background -->
+    <div class="absolute inset-0 dot-pattern opacity-10"></div>
+    
+    <div class="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10">
+      <!-- Section Header -->
+      <div class="mb-24 text-center" v-motion-fade-visible-once>
+        <span class="text-blue-500 font-bold tracking-widest text-xs uppercase mb-4 block">Portfolio</span>
+        <h2 class="text-4xl md:text-7xl font-extrabold text-white mb-6 tracking-tight">
+          Featured <span class="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent italic">Projects</span>
         </h2>
-        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">
-          A showcase of my recent work fetched dynamically from GitHub. Click any project to view details.
+        <p class="text-lg text-gray-400 max-w-xl mx-auto">
+          A curated selection of projects that made me confident in building software.
         </p>
       </div>
 
@@ -138,175 +156,178 @@ onUnmounted(() => {
         <Loader2 class="w-10 h-10 animate-spin text-blue-500" />
       </div>
 
-      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Project Grid -->
+      <div v-else class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-24">
         <div 
           v-for="(project, index) in projects" 
           :key="project.id"
+          class="flex flex-col group cursor-pointer"
           v-motion-slide-visible-bottom="{ delay: index * 100 }"
-          class="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col h-full cursor-pointer"
           @click="openModal(project)"
         >
-          <!-- Dynamic Project Preview Image / Carousel -->
-          <div class="h-48 relative overflow-hidden flex items-center justify-center bg-gray-100 dark:bg-gray-900 group/carousel">
-            <img 
-              :src="project.images[project.activeImgIndex]" 
-              :alt="project.name"
-              class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/10 transition-colors duration-300"></div>
-
-            <div v-if="project.images.length > 1" class="absolute inset-0 flex items-center justify-between px-2 opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
-              <button @click.stop="prevImage(project)" class="p-1.5 rounded-full bg-black/40 text-white hover:bg-black/70 backdrop-blur-md transition-colors cursor-pointer z-10">
-                <ChevronLeft class="w-5 h-5" />
-              </button>
-              <button @click.stop="nextImage(project)" class="p-1.5 rounded-full bg-black/40 text-white hover:bg-black/70 backdrop-blur-md transition-colors cursor-pointer z-10">
-                <ChevronRight class="w-5 h-5" />
-              </button>
-            </div>
+          <!-- Metadata Bar -->
+          <div class="flex items-center space-x-4 mb-6 text-xs font-bold tracking-tighter text-gray-500 uppercase">
+            <span>{{ project.number }}</span>
+            <div class="h-[1px] w-8 bg-gray-800"></div>
+            <span>{{ project.category }}</span>
           </div>
-          
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 capitalize">{{ project.name }}</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm flex-grow line-clamp-3">
+
+          <!-- Project Title -->
+          <h3 class="text-3xl md:text-5xl font-black text-white mb-8 group-hover:translate-x-2 transition-transform duration-300">
+            {{ project.name }}
+          </h3>
+
+          <!-- Window Card -->
+          <div 
+            class="relative rounded-[2.5rem] p-8 md:p-12 overflow-hidden transition-all duration-500 group-hover:-translate-y-2"
+            :style="{ backgroundColor: project.accentColor + '10' }" 
+          >
+            <!-- Background Accent Glow -->
+            <div class="absolute -top-24 -right-24 w-64 h-64 blur-[120px] opacity-20 transition-all duration-700 group-hover:scale-150"
+                 :style="{ backgroundColor: project.accentColor }"></div>
+
+            <p class="text-gray-300 text-lg md:text-xl font-medium mb-12 max-w-md leading-relaxed">
               {{ project.description }}
             </p>
-            
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span v-if="project.language" class="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 rounded-md">
-                {{ project.language }}
-              </span>
-            </div>
-            
-            <div class="mt-auto flex gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
-              <span class="text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline">View Details</span>
-              <Code2 class="w-4 h-4 ml-auto text-gray-400" />
+
+            <!-- Browser Mockup -->
+            <div class="relative bg-gray-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden aspect-video group/window">
+              <!-- Window Bar -->
+              <div class="h-8 bg-gray-800/50 backdrop-blur-md border-b border-white/5 px-4 flex items-center space-x-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+              </div>
+              
+              <!-- Content -->
+              <div class="relative w-full h-full bg-black/20">
+                <img 
+                  :src="project.images[project.activeImgIndex]" 
+                  :alt="project.name"
+                  class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover/window:scale-105"
+                />
+                
+                <!-- Overlay Gradient -->
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-950/40 to-transparent"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
     </div>
 
-    <!-- Project Detail Modal -->
+    <!-- Immersive Project Detail Modal -->
     <Teleport to="body">
       <div v-if="selectedProject" 
            class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 overflow-hidden"
            v-motion-fade>
         
         <!-- Backdrop -->
-        <div class="absolute inset-0 bg-gray-950/80 backdrop-blur-sm" @click="closeModal"></div>
+        <div class="absolute inset-0 bg-gray-950/90 backdrop-blur-xl" @click="closeModal"></div>
         
         <!-- Modal Content -->
-        <div class="relative bg-white dark:bg-gray-900 w-full max-w-6xl max-h-full rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row shadow-blue-500/10 border border-gray-200 dark:border-gray-800"
+        <div class="relative bg-gray-900 w-full max-w-6xl max-h-full rounded-[3rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row border border-white/10"
              v-motion-slide-bottom>
           
-          <!-- Close Button Mobile -->
-          <button @click="closeModal" class="absolute top-4 right-4 z-50 p-2 rounded-full bg-gray-100/80 dark:bg-gray-800/80 text-gray-900 dark:text-white lg:hidden">
+          <button @click="closeModal" class="absolute top-6 right-6 z-50 p-2 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors">
             <X class="w-6 h-6" />
           </button>
 
-          <!-- Left: Big Slider -->
-          <div class="lg:w-3/5 h-[300px] md:h-[450px] lg:h-full relative bg-gray-100 dark:bg-gray-950 flex items-center justify-center group/modal-slider">
+          <!-- Modal Left Side (Visuals) -->
+          <div class="lg:w-3/5 h-[350px] md:h-[500px] lg:h-full relative bg-black flex items-center justify-center">
             <img 
               :src="selectedProject.images[selectedProject.activeImgIndex]" 
               :alt="selectedProject.name"
-              class="w-full h-full object-contain p-4 md:p-8"
+              class="w-full h-full object-contain p-4 md:p-12"
             />
             
-            <div v-if="selectedProject.images.length > 1" class="absolute inset-0 flex items-center justify-between px-4 md:px-6">
-              <button @click="prevImage(selectedProject)" class="p-3 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md transition-all shadow-lg">
+            <div v-if="selectedProject.images.length > 1" class="absolute inset-0 flex items-center justify-between px-6">
+              <button @click="prevImage(selectedProject)" class="p-4 rounded-full bg-white/5 hover:bg-white/15 text-white backdrop-blur-md transition-all">
                 <ChevronLeft class="w-6 h-6" />
               </button>
-              <button @click="nextImage(selectedProject)" class="p-3 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md transition-all shadow-lg">
+              <button @click="nextImage(selectedProject)" class="p-4 rounded-full bg-white/5 hover:bg-white/15 text-white backdrop-blur-md transition-all">
                 <ChevronRight class="w-6 h-6" />
-              </button>
-            </div>
-
-            <!-- Dots -->
-            <div v-if="selectedProject.images.length > 1" class="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
-              <button v-for="(_, idx) in selectedProject.images" :key="idx"
-                      @click="selectedProject.activeImgIndex = idx"
-                      :class="['w-2 h-2 rounded-full transition-all', selectedProject.activeImgIndex === idx ? 'bg-blue-600 w-6' : 'bg-gray-400']">
               </button>
             </div>
           </div>
 
-          <!-- Right: Info -->
-          <div class="lg:w-2/5 p-8 md:p-12 overflow-y-auto bg-white dark:bg-gray-900 border-l border-gray-100 dark:border-gray-800 flex flex-col">
-            <div class="flex items-center justify-between mb-6">
-              <div class="flex items-center space-x-2 text-blue-600 dark:text-blue-400">
-                <Briefcase class="w-5 h-5" />
-                <span class="text-xs font-bold uppercase tracking-widest">Featured Project</span>
+          <!-- Modal Right Side (Content) -->
+          <div class="lg:w-2/5 p-10 md:p-16 overflow-y-auto bg-gray-900 border-l border-white/5 flex flex-col">
+            <div class="flex items-center space-x-3 mb-10">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center" 
+                   :style="{ backgroundColor: selectedProject.accentColor + '20' }">
+                <Briefcase class="w-6 h-6" :style="{ color: selectedProject.accentColor }" />
               </div>
-              <button @click="closeModal" class="hidden lg:block p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                <X class="w-6 h-6 text-gray-500" />
-              </button>
+              <div>
+                <span class="block text-[10px] font-black uppercase tracking-tighter text-gray-500">Project Highlights</span>
+                <span class="text-white font-bold text-sm">{{ selectedProject.category }}</span>
+              </div>
             </div>
 
-            <h3 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white capitalize mb-4 leading-tight">
+            <h3 class="text-4xl md:text-5xl font-black text-white mb-6 leading-[0.9]">
               {{ selectedProject.name }}
             </h3>
             
-            <div class="flex flex-wrap gap-2 mb-8">
-              <span v-if="selectedProject.language" class="px-3 py-1 text-xs font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 rounded-full">
-                {{ selectedProject.language }}
-              </span>
-              <span v-for="topic in selectedProject.topics" :key="topic" class="px-3 py-1 text-xs font-semibold bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400 rounded-full">
+            <div class="flex flex-wrap gap-2 mb-10">
+              <span v-for="topic in selectedProject.topics" :key="topic" class="px-3 py-1 text-[10px] font-black uppercase tracking-widest bg-white/5 text-gray-400 rounded-full border border-white/5">
                 {{ topic }}
               </span>
             </div>
 
-            <p class="text-lg text-gray-600 dark:text-gray-400 mb-10 leading-relaxed font-medium">
+            <p class="text-xl text-gray-400 mb-12 leading-relaxed">
               {{ selectedProject.description }}
             </p>
 
-              <!-- Action Buttons -->
-              <div class="flex flex-col space-y-4 mt-auto">
-                <!-- Highlighted Research Link -->
-                <a 
-                  v-if="selectedProject.researchUrl" 
-                  :href="selectedProject.researchUrl" 
-                  target="_blank"
-                  class="flex items-center justify-center px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-2xl font-bold transition-all shadow-lg shadow-purple-500/25 hover:-translate-y-1"
-                >
-                  <FileText class="w-5 h-5 mr-3" />
-                  Read Full Publication
-                </a>
+            <div class="flex flex-col space-y-4 mt-auto">
+              <a 
+                v-if="selectedProject.researchUrl" 
+                :href="selectedProject.researchUrl" 
+                target="_blank"
+                class="flex items-center justify-center px-8 py-5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-[2rem] font-bold transition-all shadow-xl shadow-purple-500/20 hover:-translate-y-1"
+              >
+                <FileText class="w-5 h-5 mr-3" />
+                Read Publication
+              </a>
 
-                <button 
-                  @click="handleInquiry"
-                  class="flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold transition-all shadow-lg shadow-blue-500/25 hover:-translate-y-1"
+              <button 
+                @click="handleInquiry"
+                class="flex items-center justify-center px-8 py-5 bg-white text-gray-900 rounded-[2rem] font-bold transition-all hover:bg-gray-100 hover:-translate-y-1"
+              >
+                <MessageSquare class="w-5 h-5 mr-3" />
+                Discuss Project
+              </button>
+              
+              <div class="grid grid-cols-2 gap-4">
+                <a 
+                  v-if="selectedProject.homepage" 
+                  :href="selectedProject.homepage" 
+                  target="_blank"
+                  class="flex items-center justify-center p-5 bg-gray-800 text-white rounded-[2rem] font-bold transition-all hover:bg-gray-750"
                 >
-                  <MessageSquare class="w-5 h-5 mr-3" />
-                  Inquire About This Project
-                </button>
-                
-                <div class="grid grid-cols-2 gap-4">
-                  <a 
-                    v-if="selectedProject.homepage" 
-                    :href="selectedProject.homepage" 
-                    target="_blank"
-                    class="flex items-center justify-center p-4 border border-gray-200 dark:border-gray-700 rounded-2xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-bold transition-all"
-                  >
-                    <ExternalLink class="w-5 h-5 mr-2" /> 
-                    Live Demo
-                  </a>
-                  <!-- Only show Codebase if it's the public portfolio or OJT manager -->
-                  <a 
-                    v-if="selectedProject.url && (selectedProject.name.toLowerCase().includes('portfolio') || selectedProject.name.toLowerCase().includes('ojt'))" 
-                    :href="selectedProject.url" 
-                    target="_blank"
-                    class="flex items-center justify-center p-4 border border-gray-200 dark:border-gray-700 rounded-2xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-bold transition-all"
-                  >
-                    <Code2 class="w-5 h-5 mr-2" /> 
-                    Codebase
-                  </a>
-                </div>
+                  <ExternalLink class="w-5 h-5 mr-2" /> 
+                  Demo
+                </a>
+                <a 
+                  v-if="selectedProject.url && (selectedProject.name.toLowerCase().includes('portfolio') || selectedProject.name.toLowerCase().includes('ojt'))" 
+                  :href="selectedProject.url" 
+                  target="_blank"
+                  class="flex items-center justify-center p-5 bg-gray-800 text-white rounded-[2rem] font-bold transition-all hover:bg-gray-750"
+                >
+                  <Code2 class="w-5 h-5 mr-2" /> 
+                  Code
+                </a>
               </div>
+            </div>
           </div>
         </div>
       </div>
     </Teleport>
   </section>
 </template>
+
+<style scoped>
+.dot-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+</style>
