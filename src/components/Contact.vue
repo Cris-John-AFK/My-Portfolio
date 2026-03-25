@@ -1,11 +1,19 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { Mail, Send, CheckCircle, AlertCircle, MessageCircle, Loader2 } from 'lucide-vue-next'
+import { contactStore } from '../store'
 
 const form = ref({
   name: '',
   email: '',
   message: ''
+})
+
+// Update form when user clicks "Inquire" on a project modal
+watch(() => contactStore.message, (newVal) => {
+  if (newVal) {
+    form.value.message = newVal
+  }
 })
 
 const status = ref('idle') // idle, submitting, success, error
