@@ -27,61 +27,58 @@ const handleInquiry = () => {
   }
 }
 
-// Custom image mapping remain same
-const customImages = {
-  'This-Portfolio': ['/portfolio-preview.png', '/portfolio-preview2.png'],
-  'My-Portfolio': ['/portfolio-preview.png', '/portfolio-preview2.png'],
-  'Portfolio': ['/portfolio-preview.png', '/portfolio-preview2.png'],
-  'OJT_Manager_APP': ['/ojt-preview.png', '/ojt-preview2.png', '/ojt-preview3.png', '/ojt-preview4.png'],
-  'HR-Leave-Monitoring': ['/hr-preview.png', '/hr-preview2.png', '/hr-preview3.png', '/hr-preview4.png'],
-  'Event-Attendance-with-wheel-of-names-and-slot-machine-system': [
-    '/event-preview.png', 
-    '/event-preview2.png', 
-    '/event-preview3.png', 
-    '/event-preview4.png', 
-    '/event-preview5.png', 
-    '/event-preview6.png'
-  ]
-}
-
-const fetchProjects = async () => {
-  try {
-    loading.value = true
-    const res = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`)
-    if (res.ok) {
-      const data = await res.json()
-      
-      projects.value = data
-        .filter(repo => !repo.fork)
-        .map(repo => {
-          let imgs = []
-          if (customImages[repo.name]) {
-            imgs = Array.isArray(customImages[repo.name]) ? customImages[repo.name] : [customImages[repo.name]]
-          } else {
-            imgs = [`https://opengraph.githubassets.com/1/${repo.owner.login}/${repo.name}`]
-          }
-          
-          return {
-            id: repo.id,
-            name: repo.name.replace(/-/g, ' '),
-            originalName: repo.name,
-            ownerLogin: repo.owner.login,
-            description: repo.description || 'A web development project built with modern technologies.',
-            url: repo.html_url,
-            homepage: repo.homepage,
-            language: repo.language,
-            topics: repo.topics || [],
-            images: imgs,
-            activeImgIndex: 0
-          }
-        })
-    }
-  } catch (err) {
-    console.error('Failed to fetch projects', err)
-  } finally {
-    loading.value = false
+// Static featured projects: This allows you to set your real GitHub repos to PRIVATE
+// while still keeping them fully visible and professional on your portfolio!
+const projects = ref([
+  {
+    id: 1,
+    name: 'My Portfolio',
+    originalName: 'My-Portfolio',
+    description: 'A premium, responsive portfolio website built with Vue 3, Tailwind CSS v4, and Lucide icons. Features dynamic image carousels and immersive detail modals.',
+    url: 'https://github.com/Cris-John-AFK/My-Portfolio',
+    homepage: 'https://crisjohn-portfolio.vercel.app',
+    language: 'Vue',
+    topics: ['Tailwind v4', 'Vite', 'Frontend'],
+    images: ['/portfolio-preview.png', '/portfolio-preview2.png'],
+    activeImgIndex: 0
+  },
+  {
+    id: 2,
+    name: 'OJT Manager App',
+    originalName: 'OJT_Manager_APP',
+    description: 'A high-performance management system for tracking Daily Time Records (DTR). Built for organizations needing reliable, offline-capable attendance monitoring.',
+    url: 'https://github.com/Cris-John-AFK/OJT_Manager_APP',
+    homepage: '',
+    language: 'JavaScript',
+    topics: ['SQLite', 'DTR', 'Management'],
+    images: ['/ojt-preview.png', '/ojt-preview2.png', '/ojt-preview3.png', '/ojt-preview4.png'],
+    activeImgIndex: 0
+  },
+  {
+    id: 3,
+    name: 'HR Leave Monitoring',
+    originalName: 'HR-Leave-Monitoring',
+    description: 'An enterprise-grade leave management system for tracking employee time off, approvals, and personnel history with PostgreSQL and Laravel.',
+    url: 'https://github.com/Cris-John-AFK/HR-Leave-Monitoring', // Hidden in UI, but kept here for schema
+    homepage: '',
+    language: 'Laravel & Vue',
+    topics: ['PostgreSQL', 'HRIS', 'Admin'],
+    images: ['/hr-preview.png', '/hr-preview2.png', '/hr-preview3.png', '/hr-preview4.png'],
+    activeImgIndex: 0
+  },
+  {
+    id: 4,
+    name: 'QR Event Attendance',
+    originalName: 'Event-Attendance-System',
+    description: 'A specialized QR-code based system for event attendees. Includes a lucky draw "Wheel of Names" and Slot Machine feature for giveaways.',
+    url: 'https://github.com/Cris-John-AFK/Event-Attendance-System',
+    homepage: '',
+    language: 'Vue & Firebase',
+    topics: ['QR-Code', 'Automation', 'Real-time'],
+    images: ['/event-preview.png', '/event-preview2.png', '/event-preview3.png', '/event-preview4.png', '/event-preview5.png', '/event-preview6.png'],
+    activeImgIndex: 0
   }
-}
+])
 
 // Carousel Navigation Methods
 const nextImage = (project) => {
@@ -95,7 +92,7 @@ const prevImage = (project) => {
 let autoSlideInterval = null
 
 onMounted(() => {
-  fetchProjects()
+  loading.value = false // Skip API loading since we use static data now
   
   autoSlideInterval = setInterval(() => {
     // Only auto-slide background projects, not the one in the modal
