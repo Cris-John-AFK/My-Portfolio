@@ -34,12 +34,12 @@ const projects = ref([
     accentColor: '#A855F7', // Purple
     name: 'LAMMS Research Project',
     originalName: 'LAMMS-Attendance-System',
-    description: 'A study on Learner\'s Attendance Monitoring using QR technology. Features real-time tracking and automated SF2 report generation.',
+    description: 'Published research on Learner\'s Attendance Monitoring. Features drag-and-drop attendance management, a specialized Guardhouse View for QR scanning, and location-based heatmaps analyzing reasons for late or absence.',
     url: '', 
     researchUrl: 'https://www.researchgate.net/publication/401703874_LAMMS_A_Learner\'s_Attendance_Monitoring_and_Management_System_for_Naawan_Central_School_Misamis_Oriental_Philippines',
     homepage: '',
     language: 'PHP & JavaScript',
-    topics: ['QR Technology', 'Academic Research', 'Automation'],
+    topics: ['QR Scanning', 'Guardhouse View', 'Heatmaps'],
     images: ['/dashboard.jpg', '/report.jpg'],
     activeImgIndex: 0
   },
@@ -50,7 +50,7 @@ const projects = ref([
     accentColor: '#3B82F6', // Blue
     name: 'My Portfolio V2',
     originalName: 'My-Portfolio',
-    description: 'State-of-the-art portfolio featuring glassmorphism, dynamic project modals, and automated GitHub integrations.',
+    description: 'State-of-the-art portfolio featuring glassmorphism, dynamic project modals with image carousels, and automated inquiry routing to email.',
     url: 'https://github.com/Cris-John-AFK/My-Portfolio',
     homepage: 'https://crisjohn-portfolio.vercel.app',
     language: 'Vue 3',
@@ -65,11 +65,11 @@ const projects = ref([
     accentColor: '#F97316', // Orange
     name: 'OJT Manager App',
     originalName: 'OJT_Manager_APP',
-    description: 'High-performance DTR tracking system built for speed and reliability in institutional environments.',
+    description: 'Teacher-facing class monitoring system for accepting or rejecting DTR reports. Uses Firebase & SQLite for location-based log tracking and forensic level audit trails.',
     url: 'https://github.com/Cris-John-AFK/OJT_Manager_APP',
     homepage: '',
-    language: 'JavaScript',
-    topics: ['SQLite', 'DTR', 'Management'],
+    language: 'Firebase & SQLite',
+    topics: ['Log Tracking', 'DTR', 'Forensics'],
     images: ['/ojt-preview.png', '/ojt-preview2.png', '/ojt-preview3.png', '/ojt-preview4.png'],
     activeImgIndex: 0
   },
@@ -80,26 +80,26 @@ const projects = ref([
     accentColor: '#10B981', // Emerald
     name: 'HR Leave Monitoring',
     originalName: 'HR-Leave-Monitoring',
-    description: 'Enterprise resource planning for employee leave tracking and payroll-ready attendance logs.',
+    description: 'Kiosk-style leave request system with a modern form interface. Features a secure 2-step approval workflow: Department Head verification followed by HR final approval.',
     url: 'https://github.com/Cris-John-AFK/HR-Leave-Monitoring',
     homepage: '',
     language: 'Laravel & Vue',
-    topics: ['PostgreSQL', 'HRIS', 'Admin'],
+    topics: ['2FA Workflow', 'HRIS', 'Kiosk Mode'],
     images: ['/hr-preview.png', '/hr-preview2.png', '/hr-preview3.png', '/hr-preview4.png'],
     activeImgIndex: 0
   },
   {
     id: 4,
     number: '05',
-    category: 'AUTOMATION SYSTEM',
+    category: 'MANAGEMENT SYSTEM',
     accentColor: '#F43F5E', // Rose
-    name: 'QR Event Attendance',
+    name: 'Event Attendance System',
     originalName: 'Event-Attendance-System',
-    description: 'Real-time event check-in system with built-in gamification (Wheel of Names) for huge gatherings.',
+    description: 'Robust event monitoring with automatic report sync and masterlist import. Includes built-in raffle tools like a Wheel of Names and detailed log tracking.',
     url: 'https://github.com/Cris-John-AFK/Event-Attendance-System',
     homepage: '',
     language: 'Vue & Firebase',
-    topics: ['QR-Code', 'Automation', 'Real-time'],
+    topics: ['Raffle Tools', 'Log Tracking', 'Masterlist'],
     images: ['/event-preview.png', '/event-preview2.png', '/event-preview3.png', '/event-preview4.png', '/event-preview5.png', '/event-preview6.png'],
     activeImgIndex: 0
   }
