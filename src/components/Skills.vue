@@ -1,38 +1,38 @@
 <script setup>
-import { computed, ref, onMounted } from 'vue'
-import { Monitor, Server, Terminal, Hammer, Cpu, Layers } from 'lucide-vue-next'
+import { computed } from 'vue'
+import { Monitor, Server, Terminal, Cpu } from 'lucide-vue-next'
 
 const skillCategoriesRaw = [
   {
     name: 'Frontend',
     icon: Monitor,
+    rotation: -15,
     skills: [
       { name: 'Vue.js', level: 95 },
       { name: 'React', level: 85 },
-      { name: 'HTML & CSS', level: 95 },
       { name: 'TailwindCSS', level: 95 },
-      { name: 'JavaScript / ES6+', level: 90 }
+      { name: 'JavaScript', level: 90 }
     ]
   },
   {
-    name: 'Backend & APIs',
+    name: 'Backend',
     icon: Server,
+    rotation: 5,
     skills: [
       { name: 'Node.js', level: 85 },
       { name: 'Laravel', level: 80 },
-      { name: 'REST APIs', level: 90 },
       { name: 'Firebase', level: 90 },
-      { name: 'SQLite/SQL', level: 85 }
+      { name: 'SQL', level: 85 }
     ]
   },
   {
-    name: 'Tools & DevOps',
+    name: 'DevOps',
     icon: Terminal,
+    rotation: 25,
     skills: [
-      { name: 'Git & GitHub', level: 95 },
+      { name: 'Git/GitHub', level: 95 },
       { name: 'VS Code', level: 95 },
-      { name: 'Vite / Webpack', level: 85 },
-      { name: 'Vercel / Netlify', level: 90 },
+      { name: 'Vercel', level: 90 },
       { name: 'Docker', level: 70 }
     ]
   }
@@ -44,106 +44,49 @@ const skillCategories = computed(() => {
     skills: [...category.skills].sort((a, b) => b.level - a.level)
   }))
 })
-
-// Interactive mouse effect for cards
-const cardRefs = ref([])
-const mousePositions = ref([])
-
-onMounted(() => {
-  mousePositions.value = skillCategories.value.map(() => ({ x: 0, y: 0 }))
-})
-
-const handleMouseMove = (index, e) => {
-  const card = cardRefs.value[index]
-  if (!card) return
-  
-  const rect = card.getBoundingClientRect()
-  const x = (e.clientX - rect.left) / rect.width - 0.5
-  const y = (e.clientY - rect.top) / rect.height - 0.5
-  
-  mousePositions.value[index] = { x, y }
-}
-
-const resetMouse = (index) => {
-  mousePositions.value[index] = { x: 0, y: 0 }
-}
-
-const getCardStyle = (index) => {
-  const pos = mousePositions.value[index] || { x: 0, y: 0 }
-  return {
-    transform: `perspective(1000px) rotateY(${pos.x * 12}deg) rotateX(${pos.y * -12}deg) scale3d(1.02, 1.02, 1.02)`,
-    transition: 'transform 0.15s ease-out'
-  }
-}
 </script>
 
 <template>
-  <section id="skills" class="py-24 lg:py-36 bg-gray-50 dark:bg-[#030712] relative overflow-hidden transition-colors duration-500">
-    <!-- Animated Background Blobs -->
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full animate-blob"></div>
-    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 blur-[120px] rounded-full animate-blob animation-delay-2000"></div>
+  <section id="skills" class="py-24 lg:py-48 bg-gray-50 dark:bg-[#030712] relative overflow-hidden transition-colors duration-500 flex flex-col items-center">
+    <!-- Section Header -->
+    <div class="mb-24 text-center px-4" v-motion-fade-visible-once>
+      <span class="text-blue-500 font-bold tracking-widest text-[10px] uppercase mb-4 block">Expertise</span>
+      <h2 class="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-6">
+        Technical <span class="bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent italic">Skills</span>
+      </h2>
+    </div>
 
-    <div class="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10">
-      <!-- Section Header -->
-      <div class="mb-24 text-center" v-motion-fade-visible-once>
-        <span class="text-blue-500 font-bold tracking-widest text-xs uppercase mb-4 block">Expertise</span>
-        <h2 class="text-4xl md:text-7xl font-extrabold text-gray-900 dark:text-white mb-6 tracking-tight">
-          Technical <span class="bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent italic">Skills</span>
-        </h2>
-        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
-          Mastering modern technologies to build high-performance, forensic-level applications.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-        <div 
-          v-for="(category, index) in skillCategories" 
-          :key="category.name"
-          ref="cardRefs"
-          v-motion-slide-visible-bottom="{ delay: index * 100 }"
-          @mousemove="handleMouseMove(index, $event)"
-          @mouseleave="resetMouse(index)"
-          class="group relative bg-white dark:bg-gray-900/50 backdrop-blur-xl rounded-[2.5rem] p-10 border border-gray-200 dark:border-white/5 shadow-2xl transition-all duration-300"
-          :style="getCardStyle(index)"
-        >
-          <!-- Category Header -->
-          <div class="flex items-center gap-5 mb-12">
-            <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-blue-500/10 dark:bg-blue-500/20 text-blue-500 shadow-inner">
-              <component :is="category.icon" class="w-7 h-7" />
-            </div>
-            <h3 class="text-2xl font-black text-gray-900 dark:text-white tracking-tight">{{ category.name }}</h3>
+    <!-- Uiverse Stacking Glass Container -->
+    <div class="glass-stack-container" v-motion-fade-visible-once>
+      <div 
+        v-for="(category, index) in skillCategories" 
+        :key="category.name"
+        :data-text="category.name"
+        :style="{ '--r': category.rotation }"
+        class="glass-card"
+      >
+        <!-- Card Content -->
+        <div class="card-inner">
+          <div class="flex items-center justify-between mb-6">
+            <component :is="category.icon" class="w-8 h-8 text-blue-500" />
+            <span class="text-[10px] font-black uppercase text-gray-400 dark:text-gray-500 tracking-tighter">
+               0{{ index + 1 }}
+            </span>
           </div>
           
-          <!-- Skill List -->
-          <div class="space-y-8">
-            <div v-for="skill in category.skills" :key="skill.name" class="space-y-3 group/skill">
-              <div class="flex justify-between items-end">
-                <span class="text-base font-bold text-gray-700 dark:text-gray-200 group-hover/skill:text-blue-500 transition-colors">
-                  {{ skill.name }}
-                </span>
-                <span class="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest">
-                  {{ skill.level }}%
-                </span>
+          <div class="space-y-4">
+            <div v-for="skill in category.skills" :key="skill.name" class="space-y-1.5">
+              <div class="flex justify-between text-[10px] font-bold">
+                <span class="text-gray-800 dark:text-gray-200">{{ skill.name }}</span>
+                <span class="text-blue-500">{{ skill.level }}%</span>
               </div>
-              
-              <!-- Progress Bar Wrapper -->
-              <div class="relative w-full bg-gray-200/50 dark:bg-white/5 rounded-full h-2.5 overflow-hidden">
-                <!-- Glowing Fill -->
+              <div class="w-full bg-gray-300/30 dark:bg-white/5 rounded-full h-1 overflow-hidden">
                 <div 
-                  class="h-full rounded-full bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 relative overflow-hidden transition-all duration-1000 ease-out fill-animation"
+                  class="h-full bg-blue-500 transition-all duration-1000 ease-out fill-glow"
                   :style="{ width: `${skill.level}%` }"
-                  v-motion-slide-left
-                >
-                  <!-- Light Shine -->
-                  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg] animate-shine"></div>
-                </div>
+                ></div>
               </div>
             </div>
-          </div>
-
-          <!-- Bottom Decorative Element -->
-          <div class="absolute bottom-6 right-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-             <Cpu class="w-8 h-8 text-blue-500/20 dark:text-blue-400/10" />
           </div>
         </div>
       </div>
@@ -152,32 +95,94 @@ const getCardStyle = (index) => {
 </template>
 
 <style scoped>
-@keyframes blob {
-  0% { transform: translate(0px, 0px) scale(1); }
-  33% { transform: translate(30px, -50px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
-  100% { transform: translate(0px, 0px) scale(1); }
+.glass-stack-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0;
+  width: 100%;
 }
 
-.animate-blob {
-  animation: blob 7s infinite alternate ease-in-out;
+.glass-card {
+  position: relative;
+  width: 280px; 
+  height: 340px; 
+  background: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 24px;
+  margin: 0 -100px; 
+  backdrop-filter: blur(15px);
+  transform: rotate(calc(var(--r) * 1deg));
+  z-index: 1;
 }
 
-.animation-delay-2000 {
-  animation-delay: 2s;
+/* Light mode adjustments */
+:global(.light) .glass-card {
+  background: linear-gradient(rgba(0, 0, 0, 0.05), transparent);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-@keyframes shine {
-  0% { transform: translateX(-100%) skewX(-20deg); }
-  50% { transform: translateX(100%) skewX(-20deg); }
-  100% { transform: translateX(100%) skewX(-20deg); }
+.glass-stack-container:hover .glass-card {
+  transform: rotate(0deg) translateY(-20px);
+  margin: 0 15px;
+  z-index: 10;
 }
 
-.animate-shine {
-  animation: shine 3s infinite ease-in-out;
+.glass-card::before {
+  content: attr(data-text);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  opacity: 0.8;
 }
 
-.fill-animation {
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+:global(.light) .glass-card::before {
+  background: rgba(0, 0, 0, 0.05);
+  color: #1f2937;
+}
+
+.card-inner {
+  width: 100%;
+  height: calc(100% - 40px);
+}
+
+.fill-glow {
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .glass-stack-container {
+    flex-direction: column;
+    margin-top: 50px;
+  }
+  .glass-card {
+    margin: -80px 0;
+    width: 320px;
+  }
+  .glass-stack-container:hover .glass-card {
+    transform: rotate(0deg) translateY(0);
+    margin: 10px 0;
+  }
 }
 </style>
