@@ -8,11 +8,8 @@ import { Github, Linkedin, Mail, Twitter } from 'lucide-vue-next'
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
         <!-- Brand -->
         <div class="text-center md:text-left">
-          <a href="#home" class="text-2xl font-bold tracking-tight text-blue-400 mb-2 block">
-            Web Dev Portfolio
-          </a>
           <p class="text-gray-400 text-sm">
-            Building robust web applications with a focus on UI/UX and performance.
+            Building clena and professional web applications with a focus on UI/UX and performance.
           </p>
         </div>
 
