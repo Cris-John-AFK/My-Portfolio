@@ -54,11 +54,6 @@ onUnmounted(() => {
         <!-- Left Side: Refined Typography & Clean Text -->
         <div class="flex flex-col items-start lg:pr-10" v-motion-slide-visible-left="{ delay: 200, duration: 800 }">
           
-          <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 text-sm font-semibold mb-8 border border-blue-100 dark:border-blue-800/30">
-            <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-            <span>Available for new opportunities</span>
-          </div>
-
           <h1 class="text-5xl md:text-6xl lg:text-[5rem] font-extrabold tracking-tight text-gray-900 dark:text-white mb-4 leading-[1.1] drop-shadow-sm">
             Hi, I'm <br class="hidden sm:block" />
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Cris John</span>.
@@ -104,6 +99,20 @@ onUnmounted(() => {
         <!-- Right Side: Ultra Premium Profile Image & Glass Projects -->
         <div class="relative w-full max-w-lg mx-auto mt-6 lg:mt-0" v-motion-fade-visible-once="{ delay: 500, duration: 1200 }">
           
+          <!-- Speech Bubble -->
+          <div class="absolute -top-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none" v-motion-slide-visible-bottom="{ delay: 1500 }">
+             <div class="relative flex items-center justify-center">
+               <div class="bg-white dark:bg-gray-800 px-6 py-4 rounded-[2rem] shadow-2xl border border-gray-100 dark:border-gray-700/50 flex items-center gap-3 animate-bounce-slow">
+                 <span class="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></span>
+                 <p class="text-sm md:text-base font-black text-gray-900 dark:text-white whitespace-nowrap tracking-tight italic">
+                   "I'm ready for new opportunities!" 🚀
+                 </p>
+                 <!-- Speech Arrow -->
+                 <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-5 h-5 bg-white dark:bg-gray-800 border-r border-b border-gray-100 dark:border-gray-700/50 rotate-45 -z-10"></div>
+               </div>
+             </div>
+          </div>
+
           <!-- Background Aura Behind Profile -->
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full bg-gradient-to-tr from-blue-500/40 to-purple-500/40 blur-[80px] -z-10 absolute-glow"></div>
           
@@ -179,5 +188,14 @@ onUnmounted(() => {
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
   50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
 }
 </style>

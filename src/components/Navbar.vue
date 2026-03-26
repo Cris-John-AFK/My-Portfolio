@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { Menu, X, Moon, Sun } from 'lucide-vue-next'
+import { Menu, X, Moon, Sun, Monitor } from 'lucide-vue-next'
 
 const props = defineProps(['isDark'])
 const emit = defineEmits(['toggle-dark'])
@@ -45,8 +45,10 @@ const scrollTo = (href) => {
     ]"
   >
     <div class="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl flex items-center justify-between">
-      <a href="#home" class="text-2xl font-bold tracking-tight text-blue-600 dark:text-blue-400" @click.prevent="scrollTo('#home')">
-        Web Dev Portfolio
+      <a href="#home" class="flex items-center text-blue-600 dark:text-blue-400" @click.prevent="scrollTo('#home')">
+        <div class="w-10 h-10 rounded-xl bg-blue-600/10 flex items-center justify-center border border-blue-600/20">
+           <Monitor class="w-6 h-6" />
+        </div>
       </a>
 
       <!-- Desktop Nav -->
